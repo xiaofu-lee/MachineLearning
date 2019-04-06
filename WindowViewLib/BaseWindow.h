@@ -16,12 +16,11 @@ public:
 
 protected:
 	virtual LRESULT HandleMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-	virtual void OnPaint(HDC hdc, PAINTSTRUCT ps) = 0;
-	virtual void OnKeyDown(WPARAM key) = 0;
-	virtual void OnKeyUp(WPARAM key) = 0;
-	virtual void ExitInstance() = 0;
+	virtual void OnPaint(HDC hdc, PAINTSTRUCT ps) {}
+	virtual void OnExit() {}
 
 private:
+	LRESULT CALLBACK MWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 protected:

@@ -1,6 +1,6 @@
 #include "pch.h"
-#include "framework.h"
 #include "BaseWindow.h"
+
 
 
 BaseWindow::BaseWindow(HINSTANCE hInst, WCHAR* szTitle, WCHAR* szWindowClass)
@@ -73,45 +73,43 @@ LRESULT BaseWindow::HandleMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 {
 	switch (message)
 	{
-	case WM_ERASEBKGND:
-	{
-		break;
+		case WM_PAINT:
+		{
+			// PAINTSTRUCT 绘图结构体，存储目标窗口可以绘图的客户端区域(client area)
+			PAINTSTRUCT ps;
+			HDC hdc = BeginPaint(hWnd, &ps); // DC(可画图的内存对象) 的句柄
+			// TODO: 在此处添加使用 hdc 的任何绘图代码...
+			this->OnPaint(hdc, ps);
+			EndPaint(hWnd, &ps);
+			break;
+		}
+		default:
+		{
+			return DefWindowProc(hWnd, message, wParam, lParam);
+		}
 	}
-	case WM_PAINT:
+	return 0;
+}
+
+LRESULT CALLBACK BaseWindow::MWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
 	{
-		// PAINTSTRUCT 绘图结构体，存储目标窗口可以绘图的客户端区域(client area)
-		PAINTSTRUCT ps;
-		HDC hdc = BeginPaint(hWnd, &ps); // DC(可画图的内存对象) 的句柄
-		// TODO: 在此处添加使用 hdc 的任何绘图代码...
-		this->OnPaint(hdc, ps);
-		EndPaint(hWnd, &ps);
-		break;
-	}
-	case WM_KEYDOWN:
-	{
-		this->OnKeyDown(wParam);
-		break;
-	}
-	case WM_KEYUP:
-	{
-		this->OnKeyUp(wParam);
-		break;
-	}
-	case WM_CLOSE:
-	{
-		::DestroyWindow(hWnd);
-		break;
-	}
-	case WM_DESTROY:
-	{
-		this->ExitInstance();
-		::PostQuitMessage(0);
-		break;
-	}
-	default:
-	{
-		return DefWindowProc(hWnd, message, wParam, lParam);
-	}
+		case WM_CLOSE:
+		{
+			::DestroyWindow(hWnd);
+			break;
+		}
+		case WM_DESTROY:
+		{
+			this->OnExit();
+			::PostQuitMessage(0);
+			break;
+		}
+		default:
+		{
+			return this->HandleMessage(hWnd, message, wParam, lParam);
+		}
 	}
 	return 0;
 }
@@ -126,9 +124,9 @@ LRESULT CALLBACK BaseWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPA
 		::SetWindowLong(hWnd, GWL_USERDATA, (LONG)mBaseWindow);             // 通过USERDATA把HWND和C++对象关联起来  
 	}
 	mBaseWindow = (BaseWindow*)::GetWindowLong(hWnd, GWL_USERDATA);
-	if (mBaseWindow != NULL)
+	if (mBaseWindow)
 	{
-		return mBaseWindow->HandleMessage(hWnd, message, wParam, lParam);
+		return mBaseWindow->MWndProc(hWnd, message, wParam, lParam);
 	}
 	else
 	{

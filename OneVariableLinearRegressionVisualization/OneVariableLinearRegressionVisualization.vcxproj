@@ -151,9 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BaseWindow.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="LinearRegressionAlgorithm.h" />
+    <ClInclude Include="MyWindow.h" />
     <ClInclude Include="OneVariableLinearRegressionVisualization.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
@@ -161,6 +163,7 @@
   <ItemGroup>
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="LinearRegressionAlgorithm.cpp" />
+    <ClCompile Include="MyWindow.cpp" />
     <ClCompile Include="OneVariableLinearRegressionVisualization.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WindowViewLib\WindowViewLib.vcxproj">
+      <Project>{6eb990e5-9ede-477e-b651-c76c20d4e980}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

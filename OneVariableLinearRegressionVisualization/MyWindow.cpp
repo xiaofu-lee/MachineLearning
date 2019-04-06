@@ -26,21 +26,58 @@ MyWindow::~MyWindow()
 {
 }
 
-void MyWindow::ExitInstance()
+void MyWindow::OnExit()
 {
 	CloseHandle(hThread);
 }
 
-void MyWindow::OnKeyDown(WPARAM key)
+// 消息处理
+LRESULT MyWindow::HandleMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	switch (key)
+	switch (message)
+	{
+		case WM_ERASEBKGND:
+		{
+			break;
+		}
+		case WM_PAINT:
+		{
+			// PAINTSTRUCT 绘图结构体，存储目标窗口可以绘图的客户端区域(client area)
+			PAINTSTRUCT ps;
+			HDC hdc = BeginPaint(hWnd, &ps); // DC(可画图的内存对象) 的句柄
+			// TODO: 在此处添加使用 hdc 的任何绘图代码...
+			this->OnPaint(hdc, ps);
+			EndPaint(hWnd, &ps);
+			break;
+		}
+		case WM_KEYDOWN:
+		{
+			this->OnKeyDown(wParam);
+			break;
+		}
+		case WM_KEYUP:
+		{
+			this->OnKeyUp(wParam);
+			break;
+		}
+		default:
+		{
+			return DefWindowProc(hWnd, message, wParam, lParam);
+		}
+	}
+	return 0;
+}
+
+void MyWindow::OnKeyDown(WPARAM keyCode)
+{
+	switch (keyCode)
 	{
 	case VK_UP:break;
 	default:
 		break;
 	}
 }
-void MyWindow::OnKeyUp(WPARAM key)
+void MyWindow::OnKeyUp(WPARAM keyCode)
 {
 	hThread = CreateThread(
 		NULL,
@@ -76,7 +113,7 @@ void PaintFunction(HDC hdc, PAINTSTRUCT ps)
 	{
 		double x = mData->trainDataVector[i];
 		double y = mData->realValueVector[i];
-		SetPixel(hdc, x + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - y, RGB(255, 0, 0));
+		SetPixel(hdc, (int)x + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - (int)y, RGB(255, 0, 0));
 	}
 
 	hpen = (HPEN)SelectObject(hdc, hpen);
@@ -96,7 +133,7 @@ void MyWindow::OnPaint(HDC hdc, PAINTSTRUCT ps)
 	int y = ps.rcPaint.bottom - 160;
 
 #define MAX 80
-#define _UNICODE
+//#define _UNICODE
 	wchar_t  BUFF[MAX];
 
 	ZeroMemory(BUFF, MAX);
@@ -131,8 +168,8 @@ void MyWindow::OnPaint(HDC hdc, PAINTSTRUCT ps)
 	swprintf(BUFF, MAX, L"请按任意键开始训练");
 	TextOutW(mdc, x, y + 120, BUFF, lstrlenW(BUFF));
 
-	MoveToEx(mdc, xMin + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - yMin, NULL);
-	LineTo(mdc, xMax + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - yMax);
+	MoveToEx(mdc, (int)xMin + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - (int)yMin, NULL);
+	LineTo(mdc, (int)xMax + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - (int)yMax);
 
 	PaintFunction(mdc, ps);
 

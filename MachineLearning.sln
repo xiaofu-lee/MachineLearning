@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinearRegression", "LinearRegression", "{4C352B9A-3CF1-48D1-BF86-99843EAC149D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LogisticRegression", "LogisticRegression", "{9253C494-81F5-4F92-B29E-F74D14A0A410}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OneVariableLinearRegression", "OneVariableLinearRegression\OneVariableLinearRegression.vcxproj", "{6212FB7D-9A2A-43D8-8D67-758AF32DD067}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultipleVariableLinearRegression", "MultipleVariableLinearRegression\MultipleVariableLinearRegression.vcxproj", "{551641A1-FB5B-45DD-83AB-8F15F87B937A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OneVariableLinearRegressionVisualization", "OneVariableLinearRegressionVisualization\OneVariableLinearRegressionVisualization.vcxproj", "{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Debug|x64.ActiveCfg = Debug|x64
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Debug|x64.Build.0 = Debug|x64
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Debug|x86.ActiveCfg = Debug|Win32
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Debug|x86.Build.0 = Debug|Win32
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Release|x64.ActiveCfg = Release|x64
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Release|x64.Build.0 = Release|x64
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Release|x86.ActiveCfg = Release|Win32
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067}.Release|x86.Build.0 = Release|Win32
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Debug|x64.ActiveCfg = Debug|x64
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Debug|x64.Build.0 = Debug|x64
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Debug|x86.ActiveCfg = Debug|Win32
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Debug|x86.Build.0 = Debug|Win32
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Release|x64.ActiveCfg = Release|x64
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Release|x64.Build.0 = Release|x64
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Release|x86.ActiveCfg = Release|Win32
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A}.Release|x86.Build.0 = Release|Win32
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Debug|x64.ActiveCfg = Debug|x64
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Debug|x64.Build.0 = Debug|x64
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Debug|x86.ActiveCfg = Debug|Win32
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Debug|x86.Build.0 = Debug|Win32
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Release|x64.ActiveCfg = Release|x64
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Release|x64.Build.0 = Release|x64
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Release|x86.ActiveCfg = Release|Win32
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6212FB7D-9A2A-43D8-8D67-758AF32DD067} = {4C352B9A-3CF1-48D1-BF86-99843EAC149D}
+		{551641A1-FB5B-45DD-83AB-8F15F87B937A} = {4C352B9A-3CF1-48D1-BF86-99843EAC149D}
+		{9EEA47BD-278D-4DD0-BFB8-89C3CDD960F0} = {4C352B9A-3CF1-48D1-BF86-99843EAC149D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EF19436-D23D-409A-AC0A-08575F7557FE}
+	EndGlobalSection
+EndGlobal

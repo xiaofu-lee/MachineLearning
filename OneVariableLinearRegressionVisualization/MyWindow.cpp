@@ -36,10 +36,10 @@ LRESULT MyWindow::HandleMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM l
 {
 	switch (message)
 	{
-		case WM_ERASEBKGND:
-		{
-			break;
-		}
+		//case WM_ERASEBKGND:
+		//{
+		//	break;
+		//}
 		case WM_PAINT:
 		{
 			// PAINTSTRUCT 绘图结构体，存储目标窗口可以绘图的客户端区域(client area)
@@ -94,10 +94,11 @@ DWORD WINAPI ThreadPro(LPVOID lpThreadParameter)
 	// 训练
 	while (true)
 	{
-		Sleep(8);
+		Sleep(5);
 		lra->GradientDescentAlgorithm(*mData);
+		//SendMessageW(hWnd, WM_PAINT, 0, 0);
 		//UpdateWindow(hWnd);
-		InvalidateRect(hWnd, NULL, true);
+		InvalidateRect(hWnd, NULL, false);
 	}
 	return 0;
 }

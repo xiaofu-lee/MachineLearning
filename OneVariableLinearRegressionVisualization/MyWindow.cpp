@@ -18,7 +18,7 @@ MyWindow::MyWindow(HINSTANCE hInst, WCHAR* szTitle, WCHAR* szWindowClass) :BaseW
 {
 	srand((unsigned int)time(0));
 	mData = new Data(DATA_SIZE);
-	lra = new LinearRegressionAlgorithm(0.0000000001);
+	lra = new LinearRegressionAlgorithm(0.0000000001, 0.0001);
 }
 
 

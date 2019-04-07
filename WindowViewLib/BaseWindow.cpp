@@ -73,20 +73,24 @@ LRESULT BaseWindow::HandleMessage(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 {
 	switch (message)
 	{
-		case WM_PAINT:
-		{
-			// PAINTSTRUCT 绘图结构体，存储目标窗口可以绘图的客户端区域(client area)
-			PAINTSTRUCT ps;
-			HDC hdc = BeginPaint(hWnd, &ps); // DC(可画图的内存对象) 的句柄
-			// TODO: 在此处添加使用 hdc 的任何绘图代码...
-			this->OnPaint(hdc, ps);
-			EndPaint(hWnd, &ps);
-			break;
-		}
-		default:
-		{
-			return DefWindowProc(hWnd, message, wParam, lParam);
-		}
+	//case WM_NCPAINT:
+	//{
+
+	//}
+	case WM_PAINT:
+	{
+		// PAINTSTRUCT 绘图结构体，存储目标窗口可以绘图的客户端区域(client area)
+		PAINTSTRUCT ps;
+		HDC hdc = BeginPaint(hWnd, &ps); // DC(可画图的内存对象) 的句柄
+		// TODO: 在此处添加使用 hdc 的任何绘图代码...
+		this->OnPaint(hdc, ps);
+		EndPaint(hWnd, &ps);
+		break;
+	}
+	default:
+	{
+		return DefWindowProc(hWnd, message, wParam, lParam);
+	}
 	}
 	return 0;
 }
@@ -95,21 +99,21 @@ LRESULT CALLBACK BaseWindow::MWndProc(HWND hWnd, UINT message, WPARAM wParam, LP
 {
 	switch (message)
 	{
-		case WM_CLOSE:
-		{
-			::DestroyWindow(hWnd);
-			break;
-		}
-		case WM_DESTROY:
-		{
-			this->OnExit();
-			::PostQuitMessage(0);
-			break;
-		}
-		default:
-		{
-			return this->HandleMessage(hWnd, message, wParam, lParam);
-		}
+	case WM_CLOSE:
+	{
+		::DestroyWindow(hWnd);
+		break;
+	}
+	case WM_DESTROY:
+	{
+		this->OnExit();
+		::PostQuitMessage(0);
+		break;
+	}
+	default:
+	{
+		return this->HandleMessage(hWnd, message, wParam, lParam);
+	}
 	}
 	return 0;
 }

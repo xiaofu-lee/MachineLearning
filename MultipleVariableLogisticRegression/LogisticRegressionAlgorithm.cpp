@@ -18,7 +18,7 @@ LogisticRegressionAlgorithm::~LogisticRegressionAlgorithm()
 // Âß¼­º¯Êý
 double LogisticRegressionAlgorithm::sigmoid(double x) const
 {
-	return 1.0 / (1 + exp(-x));
+	return 1.0 / (1.0 + exp(-x));
 }
 
 // Ô¤²â

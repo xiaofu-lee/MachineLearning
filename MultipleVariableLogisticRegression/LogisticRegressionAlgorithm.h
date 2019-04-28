@@ -8,11 +8,11 @@ public:
 	virtual ~LogisticRegressionAlgorithm();
 
 	void train(const Data& data);						// ÑµÁ·
-	double predict(double* paramVector);				// Ô¤²â
+	double predict(double* paramVector) const;				// Ô¤²â
 
 private:
 	void GradientBoostAlgorithm(const Data& data);	// Ìİ¶ÈÌáÉıËã·¨
-	double sigmoid(double x);	// Âß¼­º¯Êı
+	double sigmoid(double x) const;	// Âß¼­º¯Êı
 
 public:
 	double* thetaParamVector;		// ²ÎÊı

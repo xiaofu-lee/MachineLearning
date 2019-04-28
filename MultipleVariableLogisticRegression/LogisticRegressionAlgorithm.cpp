@@ -16,13 +16,13 @@ LogisticRegressionAlgorithm::~LogisticRegressionAlgorithm()
 }
 
 // Âß¼­º¯Êý
-double LogisticRegressionAlgorithm::sigmoid(double x)
+double LogisticRegressionAlgorithm::sigmoid(double x) const
 {
 	return 1.0 / (1 + exp(-x));
 }
 
 // Ô¤²â
-double LogisticRegressionAlgorithm::predict(double* paramVector)
+double LogisticRegressionAlgorithm::predict(double* paramVector) const
 {
 	double sum = 0.0;
 	for (size_t i = 0; i < this->thetaParamVectorSize; i++)

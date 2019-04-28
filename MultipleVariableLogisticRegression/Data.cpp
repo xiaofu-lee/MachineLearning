@@ -5,6 +5,10 @@
 
 Data::Data(size_t trainDataMatrixColSize):trainDataMatrixColSize(trainDataMatrixColSize)
 {
+	this->realValueVector = nullptr;
+	this->realValueVectorSize = 0;
+	this->trainDataMatrix = nullptr;
+	this->trainDataMatrixRowSize = 0;
 }
 
 

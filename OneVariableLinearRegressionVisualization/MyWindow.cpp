@@ -103,22 +103,42 @@ DWORD WINAPI ThreadPro(LPVOID lpThreadParameter)
 	return 0;
 }
 
+void drawEllipse(HDC hdc, int L, int T, int R, int B)
+{
+	HPEN hpen;
+	HBRUSH hbrush;
+	hpen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	hbrush = CreateSolidBrush(RGB(255, 0, 0));
+	hpen = (HPEN)SelectObject(hdc, hpen);
+	hbrush = (HBRUSH)SelectObject(hdc, hbrush);
+	Ellipse(hdc, L, T, R, B);
+	hpen = (HPEN)SelectObject(hdc, hpen);
+	hbrush = (HBRUSH)SelectObject(hdc, hbrush);
+
+	DeleteObject(hpen);
+	DeleteObject(hbrush);
+}
+
 // 绘制散点图
 void PaintFunction(HDC hdc, PAINTSTRUCT ps)
 {
 	HPEN hpen; // 画笔
-	hpen = CreatePen(PS_SOLID, 3, RGB(0, 0, 255));
-	hpen = (HPEN)SelectObject(hdc, hpen);
+	//hpen = CreatePen(PS_SOLID, 3, RGB(0, 0, 255));
+	//hpen = (HPEN)SelectObject(hdc, hpen);
 
 	for (size_t i = 0; i < mData->trainDataVectorSize; i++)
 	{
 		double x = mData->trainDataVector[i];
 		double y = mData->realValueVector[i];
-		SetPixel(hdc, (int)x + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - (int)y, RGB(255, 0, 0));
+		
+		//SetPixel(hdc, (int)x + ps.rcPaint.right / 2, ps.rcPaint.bottom - 10 - (int)y, RGB(255, 0, 0));
+		drawEllipse(hdc, 
+			(int)x + ps.rcPaint.right / 2 - 2, ps.rcPaint.bottom - 10 - (int)y - 2, 
+			(int)x + ps.rcPaint.right / 2 + 2, ps.rcPaint.bottom - 10 - (int)y + 2);
 	}
 
-	hpen = (HPEN)SelectObject(hdc, hpen);
-	DeleteObject(hpen);
+	//hpen = (HPEN)SelectObject(hdc, hpen);
+	//DeleteObject(hpen);
 }
 
 void MyWindow::OnPaint(HDC hdc, PAINTSTRUCT ps)
@@ -140,10 +160,6 @@ void MyWindow::OnPaint(HDC hdc, PAINTSTRUCT ps)
 	ZeroMemory(BUFF, MAX);
 	swprintf(BUFF, MAX, L"一元线性回归梯度下降可视化");
 	TextOutW(mdc, x, y, BUFF, lstrlenW(BUFF));
-
-	ZeroMemory(BUFF, MAX);
-	swprintf(BUFF, MAX, L"假设模型 y = %.2f + %.2f * x", mData->thetaParamVector[0], mData->thetaParamVector[1]);
-	TextOutW(mdc, x, y + 20, BUFF, lstrlenW(BUFF));
 
 	ZeroMemory(BUFF, MAX);
 	swprintf(BUFF, MAX, L"初始化参数 theta[0] = %f, mtheta[1] = %f", lra->thetaParamVector[0], lra->thetaParamVector[1]);

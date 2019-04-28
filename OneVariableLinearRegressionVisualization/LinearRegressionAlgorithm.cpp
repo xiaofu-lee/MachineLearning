@@ -3,18 +3,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX_RANGE 25
-
 LinearRegressionAlgorithm::LinearRegressionAlgorithm(double thresholdValue, double learningRate, size_t thetaParamVectorSize) :
 	thresholdValue(thresholdValue), learningRate(learningRate), thetaParamVectorSize(thetaParamVectorSize)
 {
 	this->thetaParamVector = new double[this->thetaParamVectorSize]{ 0.0 };
-	for (size_t i = 0; i < this->thetaParamVectorSize; i++)
-	{
-		this->thetaParamVector[i] = (double)(rand() % MAX_RANGE) + (rand() % RAND_MAX) / (RAND_MAX * 1.0);
-	}
 }
-
 
 LinearRegressionAlgorithm::~LinearRegressionAlgorithm()
 {

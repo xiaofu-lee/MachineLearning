@@ -5,30 +5,18 @@
 
 #define MAX_RANGE 10
 
-Data::Data(size_t trainDataVectorSize, size_t thetaParamVectorSize):
-	trainDataVectorSize(trainDataVectorSize), thetaParamVectorSize(thetaParamVectorSize), realValueVectorSize(trainDataVectorSize)
+Data::Data(size_t trainDataVectorSize):
+	trainDataVectorSize(trainDataVectorSize), realValueVectorSize(trainDataVectorSize)
 {
-	this->thetaParamVector = new double[this->thetaParamVectorSize]{ 0.0 };
 	this->trainDataVector = new double[this->trainDataVectorSize]{ 0.0 };
 	this->realValueVector = new double[this->realValueVectorSize]{ 0.0 };
 
-	for (size_t i = 0; i < this->thetaParamVectorSize; i++)
-	{
-		this->thetaParamVector[i] = (double)(rand() % MAX_RANGE) + (rand() % RAND_MAX) / (RAND_MAX * 1.0);
-	}
 	for (size_t i = 0; i < trainDataVectorSize; i++)
 	{
+		double theta0 = (double)(rand() % MAX_RANGE) + (rand() % RAND_MAX) / (RAND_MAX * 1.0);
+		double theta1 = (double)(rand() % MAX_RANGE) + (rand() % RAND_MAX) / (RAND_MAX * 1.0);
 		double x = (double)(rand() % 150) + (rand() % RAND_MAX) / (RAND_MAX * 1.0);
-		double y = this->thetaParamVector[0] * 1.0 + this->thetaParamVector[1] * x;
-		int val = rand() % 50;
-		if (rand() % 2) {
-			y += (double)val;
-		}
-		else
-		{
-			y -= (double)val;
-		}
-
+		double y = theta0 * 1.0 + theta1 * x;
 		this->trainDataVector[i] = x;
 		this->realValueVector[i] = y;
 	}
@@ -37,7 +25,6 @@ Data::Data(size_t trainDataVectorSize, size_t thetaParamVectorSize):
 
 Data::~Data()
 {
-	delete[] this->thetaParamVector;
 	delete[] this->trainDataVector;
 	delete[] this->realValueVector;
 }

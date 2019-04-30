@@ -49,4 +49,5 @@ int main()
 	lra.train(data);
 	saveModel(lra);
 	test(lra);
+	system("pause");
 }
